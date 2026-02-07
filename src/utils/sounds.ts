@@ -4,6 +4,7 @@
 class SoundManager {
   private audioContext: AudioContext | null = null;
   private isMuted: boolean = false;
+  private isInitialized: boolean = false;
 
   constructor() {
     // Initialize audio context on first user interaction
@@ -11,12 +12,29 @@ class SoundManager {
       // Check localStorage for mute preference
       const saved = localStorage.getItem('sync-space-muted');
       this.isMuted = saved === 'true';
+      
+      // Set up listener for first interaction to initialize audio on mobile
+      const initAudio = () => {
+        if (!this.isInitialized) {
+          this.getContext();
+          this.isInitialized = true;
+        }
+      };
+      
+      // Listen for various interaction events
+      document.addEventListener('touchstart', initAudio, { once: true });
+      document.addEventListener('click', initAudio, { once: true });
     }
   }
 
   private getContext(): AudioContext {
     if (!this.audioContext) {
       this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      
+      // Resume context if it's suspended (iOS requirement)
+      if (this.audioContext.state === 'suspended') {
+        this.audioContext.resume();
+      }
     }
     return this.audioContext;
   }

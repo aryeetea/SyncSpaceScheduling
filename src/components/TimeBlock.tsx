@@ -1,5 +1,6 @@
-import { AvailabilityStatus } from '../types/schedule';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import type { TouchEvent } from "react";
+import { AvailabilityStatus } from "../types/schedule";
 
 interface TimeBlockProps {
   hour: number;
@@ -10,55 +11,66 @@ interface TimeBlockProps {
   availabilityScore?: number;
 }
 
-export function TimeBlock({ hour, status, onStatusChange, onDragOver, isHighlighted, availabilityScore = 0 }: TimeBlockProps) {
+export function TimeBlock({
+  hour,
+  status,
+  onStatusChange,
+  onDragOver,
+  isHighlighted,
+  availabilityScore = 0,
+}: TimeBlockProps) {
   const [isPressed, setIsPressed] = useState(false);
 
+  // Prevent "stuck pressed" if mouseup happens outside the block
+  useEffect(() => {
+    const up = () => setIsPressed(false);
+    window.addEventListener("mouseup", up);
+    window.addEventListener("touchend", up);
+    return () => {
+      window.removeEventListener("mouseup", up);
+      window.removeEventListener("touchend", up);
+    };
+  }, []);
+
   const formatTime = (hour: number) => {
-    const period = hour >= 12 ? 'PM' : 'AM';
+    const period = hour >= 12 ? "PM" : "AM";
     const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
     return `${displayHour}:00 ${period}`;
   };
 
-  const getNextStatus = (currentStatus: AvailabilityStatus | null): AvailabilityStatus | null => {
-    if (currentStatus === null) return 'available';
-    if (currentStatus === 'available') return 'remote';
-    if (currentStatus === 'remote') return 'busy';
+  const getNextStatus = (
+    currentStatus: AvailabilityStatus | null
+  ): AvailabilityStatus | null => {
+    if (currentStatus === null) return "available";
+    if (currentStatus === "available") return "remote";
+    if (currentStatus === "remote") return "busy";
     return null;
   };
 
   // Calculate subtle highlighting based on availability score
   const getSmartHighlighting = () => {
-    if (availabilityScore === 0) return '';
-    
-    // Higher scores (more people available) = brighter and clearer
-    // Lower scores = softer and more faded
-    if (availabilityScore >= 0.7) {
-      // High availability - subtle glow
-      return 'smart-highlight-high';
-    } else if (availabilityScore >= 0.4) {
-      // Medium availability - slight brightness
-      return 'smart-highlight-medium';
-    } else if (availabilityScore > 0) {
-      // Low availability - softer appearance
-      return 'smart-highlight-low';
-    }
-    
-    return '';
+    if (availabilityScore === 0) return "";
+
+    if (availabilityScore >= 0.7) return "smart-highlight-high";
+    if (availabilityScore >= 0.4) return "smart-highlight-medium";
+    if (availabilityScore > 0) return "smart-highlight-low";
+
+    return "";
   };
 
   const getStatusStyles = () => {
     const smartHighlight = getSmartHighlighting();
-    
+
     if (!status) {
       return `bg-white/5 border-white/10 hover:bg-white/10 ${smartHighlight}`;
     }
-    
+
     switch (status) {
-      case 'available':
+      case "available":
         return `bg-emerald-400/15 border-emerald-400/25 hover:bg-emerald-400/20 ${smartHighlight}`;
-      case 'remote':
+      case "remote":
         return `bg-blue-400/15 border-blue-400/25 hover:bg-blue-400/20 ${smartHighlight}`;
-      case 'busy':
+      case "busy":
         return `bg-rose-400/15 border-rose-400/25 hover:bg-rose-400/20 ${smartHighlight}`;
       default:
         return `bg-white/5 border-white/10 hover:bg-white/10 ${smartHighlight}`;
@@ -67,14 +79,20 @@ export function TimeBlock({ hour, status, onStatusChange, onDragOver, isHighligh
 
   const getStatusDot = () => {
     if (!status) return null;
-    
+
     switch (status) {
-      case 'available':
-        return <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400/70 animate-gentle-pulse" />;
-      case 'remote':
-        return <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-400/70 animate-gentle-pulse" />;
-      case 'busy':
-        return <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-rose-400/70 animate-gentle-pulse" />;
+      case "available":
+        return (
+          <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400/70 animate-gentle-pulse" />
+        );
+      case "remote":
+        return (
+          <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-400/70 animate-gentle-pulse" />
+        );
+      case "busy":
+        return (
+          <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-rose-400/70 animate-gentle-pulse" />
+        );
       default:
         return null;
     }
@@ -86,25 +104,46 @@ export function TimeBlock({ hour, status, onStatusChange, onDragOver, isHighligh
   };
 
   const handleMouseEnter = () => {
-    if (isPressed) {
-      onDragOver();
-    }
+    if (isPressed) onDragOver();
   };
 
   const handleMouseUp = () => {
     setIsPressed(false);
   };
 
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    e.preventDefault(); // Prevent scrolling while dragging
+    setIsPressed(true);
+    onStatusChange(getNextStatus(status));
+  };
+
+  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    if (!isPressed) return;
+
+    const touch = e.touches[0];
+    const element = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (element && element.closest(".time-block")) {
+      onDragOver();
+    }
+  };
+
+  const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsPressed(false);
+  };
+
   return (
     <div
-      className={`hangyaku-font relative h-14 sm:h-16 rounded-xl border transition-all duration-300 cursor-pointer select-none ${getStatusStyles()} ${
-        isHighlighted ? 'ring-2 ring-yellow-400/50' : ''
+      className={`time-block hangyaku-font relative h-14 sm:h-16 rounded-xl border transition-all duration-300 cursor-pointer select-none ${getStatusStyles()} ${
+        isHighlighted ? "ring-2 ring-yellow-400/50" : ""
       }`}
       onMouseDown={handleMouseDown}
       onMouseEnter={handleMouseEnter}
       onMouseUp={handleMouseUp}
-      onTouchStart={handleMouseDown}
-      onTouchEnd={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <div className="absolute inset-0 flex items-center justify-center">
         <span className="text-xs text-slate-300/60">{formatTime(hour)}</span>
