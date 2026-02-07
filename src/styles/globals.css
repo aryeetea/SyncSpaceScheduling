@@ -1,0 +1,469 @@
+@custom-variant dark (&:is(.dark *));
+
+@import url('https://fonts.googleapis.com/css2?family=Hangyaku:wght@400;500;600&display=swap');
+
+:root {
+  --font-size: 16px;
+
+  /* Soft, muted anime evening palette - gentle and calm */
+  --background: #16161d;
+  --foreground: #f1eff8;
+
+  /* Make surfaces more readable */
+  --card: rgba(20, 22, 35, 0.55);
+  --card-foreground: #f1eff8;
+
+  --popover: rgba(30, 30, 40, 0.95);
+  --popover-foreground: #f1eff8;
+
+  --primary: #9d93c4;
+  --primary-foreground: #1e1e28;
+
+  --secondary: #7d89b0;
+  --secondary-foreground: #f1eff8;
+
+  --muted: rgba(125, 137, 176, 0.10);
+  --muted-foreground: #bdb8cc;
+
+  --accent: rgba(157, 147, 196, 0.14);
+  --accent-foreground: #f1eff8;
+
+  --destructive: #c97a7a;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(210, 200, 255, 0.14);
+
+  --input: transparent;
+  --input-background: rgba(20, 22, 35, 0.45);
+
+  --switch-background: rgba(125, 137, 176, 0.2);
+
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
+  --ring: rgba(210, 200, 255, 0.35);
+
+  --chart-1: #9d93c4;
+  --chart-2: #7d89b0;
+  --chart-3: #8fa9c9;
+  --chart-4: #b8aed4;
+  --chart-5: #d4a574;
+
+  --radius: 1.25rem;
+
+  --sidebar: rgba(30, 30, 40, 0.7);
+  --sidebar-foreground: #f1eff8;
+  --sidebar-primary: #9d93c4;
+  --sidebar-primary-foreground: #1e1e28;
+  --sidebar-accent: rgba(157, 147, 196, 0.1);
+  --sidebar-accent-foreground: #f1eff8;
+  --sidebar-border: rgba(210, 200, 255, 0.14);
+  --sidebar-ring: rgba(210, 200, 255, 0.35);
+
+  /* Tinted glass effect variables (more readable) */
+  --glass-bg: rgba(24, 28, 45, 0.55);
+  --glass-border: rgba(210, 200, 255, 0.22);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+
+  /* Soft accent glow */
+  --glass-glow: rgba(180, 160, 255, 0.10);
+}
+
+.dark {
+  --background: #16161d;
+  --foreground: #f1eff8;
+
+  --card: rgba(20, 22, 35, 0.55);
+  --card-foreground: #f1eff8;
+
+  --popover: rgba(30, 30, 40, 0.95);
+  --popover-foreground: #f1eff8;
+
+  --primary: #9d93c4;
+  --primary-foreground: #1e1e28;
+
+  --secondary: #7d89b0;
+  --secondary-foreground: #f1eff8;
+
+  --muted: rgba(125, 137, 176, 0.10);
+  --muted-foreground: #bdb8cc;
+
+  --accent: rgba(157, 147, 196, 0.14);
+  --accent-foreground: #f1eff8;
+
+  --destructive: #c97a7a;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(210, 200, 255, 0.14);
+
+  --input: rgba(255, 255, 255, 0.03);
+  --input-background: rgba(20, 22, 35, 0.45);
+
+  --ring: rgba(210, 200, 255, 0.35);
+
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
+  --chart-1: #9d93c4;
+  --chart-2: #7d89b0;
+  --chart-3: #8fa9c9;
+  --chart-4: #b8aed4;
+  --chart-5: #d4a574;
+
+  --sidebar: rgba(30, 30, 40, 0.7);
+  --sidebar-foreground: #f1eff8;
+  --sidebar-primary: #9d93c4;
+  --sidebar-primary-foreground: #1e1e28;
+  --sidebar-accent: rgba(157, 147, 196, 0.1);
+  --sidebar-accent-foreground: #f1eff8;
+  --sidebar-border: rgba(210, 200, 255, 0.14);
+  --sidebar-ring: rgba(210, 200, 255, 0.35);
+
+  --glass-bg: rgba(24, 28, 45, 0.55);
+  --glass-border: rgba(210, 200, 255, 0.22);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+  --glass-glow: rgba(180, 160, 255, 0.10);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* ---------- Readability helpers for background images ---------- */
+
+/* Put this on the wrapper that has the anime background image */
+.bg-dim {
+  position: relative;
+}
+
+.bg-dim::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 18, 0.55),
+    rgba(10, 10, 18, 0.72)
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-dim > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Text that sits on glass */
+.text-on-glass {
+  color: var(--foreground);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Glassmorphism utility classes ---------- */
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(40, 45, 75, 0.62) 0%,
+    rgba(24, 28, 50, 0.56) 45%,
+    rgba(18, 20, 36, 0.60) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 16px 50px 0 var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.glass-accent {
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(210, 200, 255, 0.16),
+    0 0 30px var(--glass-glow);
+}
+
+.glass-card-hover {
+  transition: all 400ms ease;
+}
+
+.glass-card-hover:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(46, 52, 88, 0.70) 0%,
+    rgba(28, 32, 58, 0.62) 45%,
+    rgba(18, 20, 36, 0.66) 100%
+  );
+  border-color: rgba(210, 200, 255, 0.32);
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 60px 0 rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(180, 160, 255, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* Hangyaku font */
+.hangyaku-font {
+  font-family: 'Hangyaku', sans-serif;
+}
+
+/* Crystal text effect */
+.crystal-text {
+  background: linear-gradient(
+    135deg,
+    #fff 0%,
+    #ffc4dd 20%,
+    #d4a5ff 40%,
+    #a8d8ff 60%,
+    #ffc4dd 80%,
+    #fff 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 30px rgba(255, 255, 255, 0.3),
+    0 0 60px rgba(255, 196, 221, 0.2);
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
+  animation: crystalShine 3s ease-in-out infinite;
+}
+
+@keyframes crystalShine {
+  0%, 100% {
+    filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3)) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 2px 12px rgba(255, 196, 221, 0.5)) brightness(1.1);
+  }
+}
+
+/* Peaceful fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Gentle float animation */
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Soft slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Soft slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Gentle breathing glow animation */
+@keyframes breathingGlow {
+  0%, 100% {
+    box-shadow:
+      0 8px 32px 0 rgba(180, 160, 255, 0.08),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.10);
+  }
+  50% {
+    box-shadow:
+      0 12px 40px 0 rgba(180, 160, 255, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  }
+}
+
+/* Shimmer effect for glass cards */
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Pulse animation for dots */
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
+.animate-slide-in-left { animation: slideInLeft 0.5s ease-out forwards; }
+.animate-gentle-float { animation: gentleFloat 4s ease-in-out infinite; }
+.animate-breathing-glow { animation: breathingGlow 3s ease-in-out infinite; }
+.animate-gentle-pulse { animation: gentlePulse 2s ease-in-out infinite; }
+
+/* Staggered animation delays */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+.animate-delay-600 { animation-delay: 0.6s; }
+.animate-delay-700 { animation-delay: 0.7s; }
+
+/* Shimmer overlay for glass cards */
+.glass-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Smart highlighting for time blocks - subtle and gentle */
+.smart-highlight-high {
+  opacity: 1;
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.08),
+    inset 0 0 20px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+}
+
+.smart-highlight-medium {
+  opacity: 0.95;
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.04),
+    inset 0 0 15px rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+}
+
+.smart-highlight-low {
+  opacity: 0.85;
+  backdrop-filter: blur(12px);
+  filter: brightness(0.92);
+}

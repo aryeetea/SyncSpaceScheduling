@@ -1,0 +1,99 @@
+╔══════════════════════════════════════════════════════════════╗
+║                   🌸 SYNC SPACE QUICK START 🌸                ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────┐
+│  ⚠️  IMPORTANT: Your Supabase database has NO TABLES!        │
+│                                                              │
+│  The app will NOT work until you create the required table. │
+└──────────────────────────────────────────────────────────────┘
+
+
+📋 STEP-BY-STEP GUIDE
+═══════════════════════════════════════════════════════════════
+
+1️⃣  CREATE DATABASE TABLE (REQUIRED - 2 minutes)
+   ─────────────────────────────────────────────
+   
+   👉 Read: SUPABASE_SETUP.md
+   
+   ✓ Go to Supabase Dashboard → SQL Editor
+   ✓ Copy the CREATE TABLE SQL (in SUPABASE_SETUP.md)
+   ✓ Click "Run"
+   ✓ Verify table exists: kv_store_090a6328
+
+
+2️⃣  GET YOUR CREDENTIALS (1 minute)
+   ─────────────────────────────────────────────
+   
+   👉 Supabase Dashboard → Settings → API
+   
+   Copy these 4 values:
+   • SUPABASE_URL
+   • SUPABASE_ANON_KEY
+   • SUPABASE_SERVICE_ROLE_KEY
+   • SUPABASE_DB_URL (from Settings → Database)
+
+
+3️⃣  DEPLOY TO VERCEL (5 minutes)
+   ─────────────────────────────────────────────
+   
+   👉 Read: DEPLOYMENT.md
+   
+   OPTION A: GitHub + Vercel (Easiest)
+   ✓ Download code → Push to GitHub
+   ✓ Connect to Vercel → Add env variables
+   ✓ Deploy!
+   
+   OPTION B: Vercel CLI
+   ✓ npm install -g vercel
+   ✓ vercel login
+   ✓ vercel (add env vars)
+   ✓ vercel --prod
+
+
+4️⃣  TEST YOUR APP (2 minutes)
+   ─────────────────────────────────────────────
+   
+   👉 Read: SETUP_CHECKLIST.md
+   
+   ✓ Visit your Vercel URL
+   ✓ Create a test group
+   ✓ Mark some availability
+   ✓ Join in incognito mode
+   ✓ Verify real-time sync works
+
+
+═══════════════════════════════════════════════════════════════
+
+📚 ALL DOCUMENTATION FILES
+─────────────────────────────────────────────
+
+README.md             → Overview and features
+SETUP_CHECKLIST.md    → Complete step-by-step checklist
+SUPABASE_SETUP.md     → Database setup (START HERE!)
+DEPLOYMENT.md         → Vercel deployment guide
+QUICK_START.txt       → This file
+
+
+═══════════════════════════════════════════════════════════════
+
+🆘 COMMON ERRORS
+─────────────────────────────────────────────
+
+ERROR: "relation kv_store_090a6328 does not exist"
+FIX:   Create the table! See SUPABASE_SETUP.md Step 2
+
+ERROR: "Failed to fetch group data"
+FIX:   Create the table or check environment variables
+
+ERROR: "Invalid API key"
+FIX:   Double-check your Supabase credentials in Vercel
+
+
+═══════════════════════════════════════════════════════════════
+
+🎉 TOTAL TIME: ~10 minutes
+🌸 DIFFICULTY: Beginner-friendly
+
+Good luck! ✨
